@@ -1,1 +1,1 @@
-include ':facedetection_test1', ':readsqlite'
+include ':facedetection_test1', ':readsqlite', ':conslay'

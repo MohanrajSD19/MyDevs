@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyDevs.iml" filepath="$PROJECT_DIR$/MyDevs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/conslay/conslay.iml" filepath="$PROJECT_DIR$/conslay/conslay.iml" />
       <module fileurl="file://$PROJECT_DIR$/facedetection_test1/facedetection_test1.iml" filepath="$PROJECT_DIR$/facedetection_test1/facedetection_test1.iml" />
       <module fileurl="file://$PROJECT_DIR$/readsqlite/readsqlite.iml" filepath="$PROJECT_DIR$/readsqlite/readsqlite.iml" />
     </modules>
