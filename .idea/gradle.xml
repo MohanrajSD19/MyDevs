@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/conslay" />
+            <option value="$PROJECT_DIR$/demofragswitch" />
             <option value="$PROJECT_DIR$/facedetection_test1" />
             <option value="$PROJECT_DIR$/readsqlite" />
           </set>
