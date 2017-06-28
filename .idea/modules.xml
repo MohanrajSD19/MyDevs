@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/demofragswitch/demofragswitch.iml" filepath="$PROJECT_DIR$/demofragswitch/demofragswitch.iml" />
       <module fileurl="file://$PROJECT_DIR$/facedetection_test1/facedetection_test1.iml" filepath="$PROJECT_DIR$/facedetection_test1/facedetection_test1.iml" />
       <module fileurl="file://$PROJECT_DIR$/readsqlite/readsqlite.iml" filepath="$PROJECT_DIR$/readsqlite/readsqlite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/segmentseekbar/segmentseekbar.iml" filepath="$PROJECT_DIR$/segmentseekbar/segmentseekbar.iml" />
     </modules>
   </component>
 </project>
