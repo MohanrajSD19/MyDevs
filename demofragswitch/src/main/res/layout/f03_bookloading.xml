@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c16262">
+
+    <!--<com.victor.loading.book.BookLoading
+        android:id="@+id/bookloading"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true" />-->
+    <!--<bookloading.book.BookLoading
+        android:id="@+id/bookloading"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+       />-->
+    <EditText
+        android:id="@+id/edTxt_myphoneno"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:digits="0123456789+"
+        android:textColor="#51584f"
+        android:textSize="30sp"
+        android:background="#fff"/>
+    <Button
+        android:id="@+id/button_act"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="start" />
+</LinearLayout>

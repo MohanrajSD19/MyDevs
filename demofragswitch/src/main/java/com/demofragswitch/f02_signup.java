@@ -7,6 +7,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Mohanraj.S,innobot-linux-4 on 27/6/17.
@@ -16,6 +23,8 @@ public class f02_signup extends Fragment implements  View.OnClickListener{
 
     private View signup_Frag;
     private Button button_SignUp;
+    private RadioGroup radioGp_kf06_resident_away;
+    List<RadioButton> radioButtons = new ArrayList<RadioButton>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,6 +38,16 @@ public class f02_signup extends Fragment implements  View.OnClickListener{
         super.onActivityCreated(savedInstanceState);
         button_SignUp=(Button)signup_Frag.findViewById(R.id.button_SignUp);
         button_SignUp.setOnClickListener(this);
+        
+
+        radioGp_kf06_resident_away = (RadioGroup) signup_Frag.findViewById(R.id.radioGp_kf06_resident_away);
+        radioButtons.add( (RadioButton)signup_Frag.findViewById(R.id.radio_kf06_1_2_hours) );
+        radioButtons.add( (RadioButton)signup_Frag.findViewById(R.id.radio_kf06_halfday) );
+        radioButtons.add( (RadioButton)signup_Frag.findViewById(R.id.radio_kf06_allday) );
+        radioButtons.add( (RadioButton)signup_Frag.findViewById(R.id.radio_kf06_moreday) );
+
+        //configClickListeners();
+        radioButtonAction();
 
     }
 
@@ -41,6 +60,28 @@ public class f02_signup extends Fragment implements  View.OnClickListener{
             default:
                 break;
         }
+    }
+
+    private void radioButtonAction(){
+        for (RadioButton button : radioButtons){
+            button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) processRadioButtonClick(buttonView);
+                    String radio_Text = buttonView.getText().toString();
+                    int radio_Id = buttonView.getId();
+                    System.out.println("Selected the Radio:"+radio_Text+", Radio-Id:"+radio_Id);
+                }
+            });
+
+        }
+    }
+
+    private void processRadioButtonClick(CompoundButton buttonView){
+        for (RadioButton button : radioButtons){
+            if (button != buttonView ) button.setChecked(false);
+        }
+
     }
 
     public void showOtherFragment()

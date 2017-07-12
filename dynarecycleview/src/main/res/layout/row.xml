@@ -1,0 +1,56 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:id="@+id/card_view"
+    android:layout_height="80dp">
+    <RelativeLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <!--<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="0.75"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical">-->
+        <TextView
+            android:id="@+id/txtTitle"
+            android:padding="12dp"
+            android:textColor="#2dbc62"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="30dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--<TextView
+            android:id="@+id/txtDescription"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">-->
+        <ImageView
+            android:id="@+id/crossImage"
+
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="20dp"
+            android:background="@drawable/ic_close_black_24dp" />
+   <!-- </LinearLayout>-->
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
