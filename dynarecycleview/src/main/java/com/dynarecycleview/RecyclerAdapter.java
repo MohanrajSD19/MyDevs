@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +28,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerItemV
     public RecyclerItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, parent, false);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_1, parent, false);
+       // View view = LayoutInflater.from(parent.getContext()).inflate(isViewWithCatalog ? R.layout.row : R.layout.row_1, null);
         RecyclerItemViewHolder holder = new RecyclerItemViewHolder(view);
         return holder;
     }

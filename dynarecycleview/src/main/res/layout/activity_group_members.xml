@@ -52,6 +52,13 @@
         android:layout_weight="1"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/imgBtn_switch_views"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_grid_on"
+            android:layout_gravity="end"
+            android:background="@null"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:scrollbars="vertical"
@@ -59,6 +66,8 @@
             android:layout_height="350dp"
             android:background="#2dbc62" />
     </LinearLayout>
+
+
 
 
 </LinearLayout>

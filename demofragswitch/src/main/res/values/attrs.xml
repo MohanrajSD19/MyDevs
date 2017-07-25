@@ -10,4 +10,9 @@
     <declare-styleable name="CradleBall">
         <attr name="cradle_ball_color" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="MaskedEditText">
+        <attr name="mask" format="string" />
+        <attr name="placeholder" format="string" />
+    </declare-styleable>
 </resources>

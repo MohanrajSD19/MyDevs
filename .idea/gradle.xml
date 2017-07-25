@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/batterylogs" />
             <option value="$PROJECT_DIR$/conslay" />
             <option value="$PROJECT_DIR$/demofragswitch" />
             <option value="$PROJECT_DIR$/dyanmicip" />
@@ -15,6 +16,8 @@
             <option value="$PROJECT_DIR$/facedetection_test1" />
             <option value="$PROJECT_DIR$/readsqlite" />
             <option value="$PROJECT_DIR$/segmentseekbar" />
+            <option value="$PROJECT_DIR$/signalstatus" />
+            <option value="$PROJECT_DIR$/togglepassword" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

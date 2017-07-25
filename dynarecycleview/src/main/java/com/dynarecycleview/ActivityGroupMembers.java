@@ -5,11 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,13 +28,18 @@ public class ActivityGroupMembers extends AppCompatActivity implements RemoveCli
     AutoCompleteTextView etTitle;
     String title = "",description = "";
     ImageView crossImage;
+    ImageButton imgBtn_switch_views;
     public Bundle getBundle = null;
     String groupCount="";
     int mGroupCount=0;
+    boolean isShowingGrid =false;
     TextView txtVw_groupcount;
     String[] mPeopels_1={"Kiruthika","Dinesh ","Mohan","Mellwyn","Subash","sasi","Priya"};
     String[] mPeopels={"Kiruthika Ayyasamy","DineshKumar Palanisamy ","Mohanraj Sambath","Mellwyn Joesph","Subash Sundarraj","Sasikumar Kannaiyan","Sathya Priya Perumal"};
-    private GridLayoutManager lLayout;
+    private GridLayoutManager mGridLayoutManager;
+    private LinearLayoutManager mLinearLayoutManager;
+    private boolean isViewWithCatalog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,19 +53,21 @@ public class ActivityGroupMembers extends AppCompatActivity implements RemoveCli
         }
 
         txtVw_groupcount =(TextView) findViewById(R.id.txtVw_groupcount);
+        imgBtn_switch_views = (ImageButton) findViewById(R.id.imgBtn_switch_views);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerAdapter = new RecyclerAdapter(myList,this);
-
-       /* final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(mRecyclerAdapter);*/
-
-        lLayout = new GridLayoutManager(ActivityGroupMembers.this, 2);
-        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
-        mRecyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
-        mRecyclerView.setLayoutManager(lLayout);
+        mLinearLayoutManager = new LinearLayoutManager(this);
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mRecyclerAdapter);
+
+        //------------------------
+
+
+
+        //------------------------
+
+
 
         etTitle = (AutoCompleteTextView) findViewById(R.id.etTitle);
         //etDescription = (EditText) findViewById(R.id.etDescription);
@@ -125,6 +133,12 @@ public class ActivityGroupMembers extends AppCompatActivity implements RemoveCli
 
             }
         });
+
+        imgBtn_switch_views.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setRecyclerLayout();
+            }});
     }
     @Override
     public void OnRemoveClick(int index) {
@@ -142,6 +156,30 @@ public class ActivityGroupMembers extends AppCompatActivity implements RemoveCli
             //etTitle.setCursorVisible(false);
 
         }
+    }
+
+
+    private void setRecyclerLayout(){
+
+        isViewWithCatalog = !isViewWithCatalog;
+
+        mRecyclerView.setLayoutManager(isViewWithCatalog ? new LinearLayoutManager(this) : new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+        /*if(!isShowingGrid){
+            isShowingGrid=true;
+            mLinearLayoutManager = new LinearLayoutManager(this);
+            mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            mRecyclerView.setLayoutManager(mLinearLayoutManager);
+            mRecyclerView.setAdapter(mRecyclerAdapter);
+        }else{
+            isShowingGrid=false;
+            mGridLayoutManager = new GridLayoutManager(ActivityGroupMembers.this, 2);
+            int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
+            mRecyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
+            mRecyclerView.setLayoutManager(mGridLayoutManager);
+            mRecyclerView.setAdapter(mRecyclerAdapter);
+        }*/
+
     }
 }
 

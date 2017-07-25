@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:maskededittext="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#c16262">
 
@@ -23,6 +26,13 @@
         android:textColor="#51584f"
         android:textSize="30sp"
         android:background="#fff"/>
+
+    <com.demofragswitch.MaskedEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Hint text"
+        maskededittext:mask=" (999) 999-9999"
+        android:id="@+id/txtMaskedEditText" />
     <Button
         android:id="@+id/button_act"
         android:layout_width="wrap_content"

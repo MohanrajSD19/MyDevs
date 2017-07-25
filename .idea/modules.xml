@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyDevs.iml" filepath="$PROJECT_DIR$/MyDevs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/batterylogs/batterylogs.iml" filepath="$PROJECT_DIR$/batterylogs/batterylogs.iml" />
       <module fileurl="file://$PROJECT_DIR$/conslay/conslay.iml" filepath="$PROJECT_DIR$/conslay/conslay.iml" />
       <module fileurl="file://$PROJECT_DIR$/demofragswitch/demofragswitch.iml" filepath="$PROJECT_DIR$/demofragswitch/demofragswitch.iml" />
       <module fileurl="file://$PROJECT_DIR$/dyanmicip/dyanmicip.iml" filepath="$PROJECT_DIR$/dyanmicip/dyanmicip.iml" />
@@ -10,6 +11,8 @@
       <module fileurl="file://$PROJECT_DIR$/facedetection_test1/facedetection_test1.iml" filepath="$PROJECT_DIR$/facedetection_test1/facedetection_test1.iml" />
       <module fileurl="file://$PROJECT_DIR$/readsqlite/readsqlite.iml" filepath="$PROJECT_DIR$/readsqlite/readsqlite.iml" />
       <module fileurl="file://$PROJECT_DIR$/segmentseekbar/segmentseekbar.iml" filepath="$PROJECT_DIR$/segmentseekbar/segmentseekbar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/signalstatus/signalstatus.iml" filepath="$PROJECT_DIR$/signalstatus/signalstatus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/togglepassword/togglepassword.iml" filepath="$PROJECT_DIR$/togglepassword/togglepassword.iml" />
     </modules>
   </component>
 </project>
