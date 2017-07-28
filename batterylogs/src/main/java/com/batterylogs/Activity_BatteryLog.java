@@ -4,9 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,6 +19,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import static com.batterylogs.NetworkStateChangeReceiver.IS_NETWORK_AVAILABLE;
+import com.batterylogs.NetworkStateChangeReceiver;
 
 /**
  * Created by Mohanraj.S on 25/7/17 for MyDevs.
@@ -23,7 +31,7 @@ public class Activity_BatteryLog extends AppCompatActivity {
 
     private static final String TAG = "Activity_BatteryLog";
     private BroadcastReceiver batteryInfoReceiver;
-    private ImageView imgVw;
+    private ImageView imgVw,imgVw_Settings;
     Animation animationBlink;
 
     @Override
@@ -31,16 +39,53 @@ public class Activity_BatteryLog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imgVw =(ImageView)findViewById(R.id.imgVw_BatteryStatus);
+        imgVw_Settings =(ImageView)findViewById(R.id.imgVw_Settings);
         animationBlink = AnimationUtils.loadAnimation(this, R.anim.blink);
         batteryInfoReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Log.d(TAG, "onReceive() called with intent " + intent);
                 updateBatteryStatus(intent);
+                try {
+
+                    //boolean isVisible = MyApplication.isActivityVisible();
+
+                    //Log.i("Activity is Visible ", "Is activity visible : " + isVisible);
+
+                    // If it is visible then trigger the task else do nothing
+                    //if (isVisible) {
+                        ConnectivityManager connectivityManager = (ConnectivityManager) context
+                                .getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo networkInfo = connectivityManager
+                                .getActiveNetworkInfo();
+
+                        // Check internet connection and accrding to state change the
+                        // text of activity by calling method
+                        if (networkInfo != null && networkInfo.isConnected()) {
+                            changeTextStatus(true);
+                        } else {
+                            changeTextStatus(false);
+                        }
+                    //}
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
 
         };
+
+        // At activity startup we manually check the internet status and change
+        // the text status
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            changeTextStatus(true);
+        } else {
+            changeTextStatus(false);
+        }
+
+
     }
 
 
@@ -54,6 +99,8 @@ public class Activity_BatteryLog extends AppCompatActivity {
         intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
 
         registerReceiver(batteryInfoReceiver, intentFilter);
+
+        MyApplication.activityResumed();// On Resume notify the Application
     }
 
     @Override
@@ -62,7 +109,27 @@ public class Activity_BatteryLog extends AppCompatActivity {
         if (batteryInfoReceiver != null) {
             unregisterReceiver(batteryInfoReceiver);
         }
+        MyApplication.activityPaused();// On Pause notify the Application
     }
+
+
+    // Method to change the text status
+    public void changeTextStatus(boolean isConnected) {
+
+        // Change status according to boolean value
+        if (isConnected) {
+            System.out.println("Net Connected");
+            //internetStatus.setText("Internet Connected.");
+            //imgVw_Settings.setBackgroundColor(Color.parseColor("#00ff00"));
+            imgVw_Settings.setImageResource(R.drawable.ic_signal_wifi_4_bar_black_24dp);
+        } else {
+            System.out.println("Net DisConnected");
+            //internetStatus.setText("Internet Disconnected.");
+            //imgVw_Settings.setBackgroundColor(Color.parseColor("#ff0000"));
+            imgVw_Settings.setImageResource(R.drawable.ic_signal_wifi_off_black_24dp);
+        }
+    }
+
 
     private void updateBatteryStatus(Intent intent) {
         boolean present = intent.getBooleanExtra(BatteryManager.EXTRA_PRESENT, false);
@@ -113,10 +180,10 @@ public class Activity_BatteryLog extends AppCompatActivity {
 
             switch (plugged) {
                 case BatteryManager.BATTERY_PLUGGED_WIRELESS:
-                   // cd.setStatus("Wireless");
+                    // cd.setStatus("Wireless");
                     break;
                 case BatteryManager.BATTERY_PLUGGED_USB:
-                   // cd.setStatus("USB");
+                    // cd.setStatus("USB");
                     break;
                 case BatteryManager.BATTERY_PLUGGED_AC:
                     //cd.setStatus("AC");
@@ -168,7 +235,7 @@ public class Activity_BatteryLog extends AppCompatActivity {
             if (temperature > 0) {
                 float temp = ((float) temperature) / 10f;
                 //cd = new CardData();
-               // cd.setFeature("Temperature");
+                // cd.setFeature("Temperature");
                 //cd.setStatus(temp + "°C");
                 //cardData.add(cd);
             }
@@ -179,7 +246,7 @@ public class Activity_BatteryLog extends AppCompatActivity {
                 //cd = new CardData();
                 //cd.setFeature("Voltage");
                 //cd.setStatus(voltage + "mV");
-               // cardData.add(cd);
+                // cardData.add(cd);
             }
 
             long capacity = getBatteryCapacity(this);

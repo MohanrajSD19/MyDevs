@@ -1,1 +1,1 @@
-include ':facedetection_test1', ':readsqlite', ':conslay', ':demofragswitch', ':segmentseekbar', ':dyanmicip', ':dynarecycleview', ':signalstatus', ':togglepassword', ':batterylogs'
+include ':facedetection_test1', ':readsqlite', ':conslay', ':demofragswitch', ':segmentseekbar', ':dyanmicip', ':dynarecycleview', ':signalstatus', ':togglepassword', ':batterylogs', ':retroapp'
