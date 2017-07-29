@@ -11,23 +11,36 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 class APIClient {
 
-    private static Retrofit retrofit ;
+    private static Retrofit retrofit;
     //private static Retrofit retrofit = null;
+//
+//    static Retrofit getClient() {
+//        //try {
+//            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+//            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+//
+//
+//            retrofit = new Retrofit.Builder()
+//                    .baseUrl("http://staging-monitor.accushield.com/api/kiosk/")
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .client(client)
+//                    .build();
+//        //}catch(Exception e){e.printStackTrace();}
+//        return retrofit;
+//    }
 
-    static Retrofit getClient() {
-        //try {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+    public static Retrofit getClient() {
 
-
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(Test.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
-                    .build();
-        //}catch(Exception e){e.printStackTrace();}
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder().baseUrl("http://staging-monitor.accushield.com/api/kiosk/").client(getOkhttpClient()).addConverterFactory(GsonConverterFactory.create()).build();
+        }
         return retrofit;
     }
 
+    public static OkHttpClient getOkhttpClient() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return new OkHttpClient.Builder().addInterceptor(interceptor).build();
+    }
 }
