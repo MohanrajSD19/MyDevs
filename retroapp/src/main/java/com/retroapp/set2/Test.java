@@ -2,17 +2,10 @@ package com.retroapp.set2;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
 import com.retroapp.R;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,30 +36,9 @@ public class Test extends AppCompatActivity  {
         call2.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-               // ResidentDatum userList = response.body();
-                //userList.getStatus();
-              //  System.out.println("onResponse:"+userList.getStatus());
-                System.out.println("onResponse:"+response.body());
                 if (response.body() != null) {
                     if (response.isSuccessful()) {
-                        BufferedReader reader = null;
-                        StringBuilder sb = new StringBuilder();
-                        try {
-                            reader = new BufferedReader(new InputStreamReader(response.body().byteStream()));
-                            String line;
-                            try {
-                                while ((line = reader.readLine()) != null) {
-                                    sb.append(line);
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        String result = sb.toString();
-                        System.out.println("onResponse:"+result);
-
+                        parseResponse(response);
                     }
                 }else{
                     System.out.println("onResponse:"+response.body());
@@ -79,5 +51,25 @@ public class Test extends AppCompatActivity  {
         });
     }
 
-
+    private String parseResponse(Response<ResponseBody> response){
+        String result ="";
+        BufferedReader reader = null;
+        StringBuilder sb = new StringBuilder();
+        try {
+            reader = new BufferedReader(new InputStreamReader(response.body().byteStream()));
+            String line;
+            try {
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        result = sb.toString();
+        System.out.println("onResponse:"+result);
+        return result;
+    }
 }
