@@ -6,34 +6,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /*
- * Created by anupamchugh on 05/01/17.
+ * Created by mohan on 31/07/17.
  */
 
 class APIClient {
 
     private static Retrofit retrofit;
-    //private static Retrofit retrofit = null;
-//
-//    static Retrofit getClient() {
-//        //try {
-//            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-//            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-//
-//
-//            retrofit = new Retrofit.Builder()
-//                    .baseUrl("http://staging-monitor.accushield.com/api/kiosk/")
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .client(client)
-//                    .build();
-//        //}catch(Exception e){e.printStackTrace();}
-//        return retrofit;
-//    }
 
     public static Retrofit getClient() {
 
         if (retrofit == null) {
-            retrofit = new Retrofit.Builder().baseUrl("http://staging-monitor.accushield.com/api/kiosk/").client(getOkhttpClient()).addConverterFactory(GsonConverterFactory.create()).build();
+            retrofit = new Retrofit.Builder().baseUrl(Test.BASE_URL).client(getOkhttpClient()).addConverterFactory(GsonConverterFactory.create()).build();
         }
         return retrofit;
     }
