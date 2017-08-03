@@ -7,6 +7,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteStatement;
+
+import java.util.ArrayList;
 
 public class Trn_Residents extends DataBase {
 
@@ -57,21 +60,105 @@ public class Trn_Residents extends DataBase {
         mCVArgs.put(Constants.FULL_NAME, full_name);
 
 
-        return Constants.mDb.insert( Constants.RESIDENT_TABLE, null,
+        return mDb.insert( Constants.RESIDENT_TABLE, null,
                 mCVArgs );
 
     }
 
 
+
+    public void insertResidentFast(ArrayList<PojoResidents> mArrayList) {
+
+        // you can use INSERT only
+        String sql = "INSERT OR REPLACE INTO " + Constants.RESIDENT_TABLE + " ("
+                + Constants.COMMUNITY_ID +","
+                + Constants.ID +","
+                + Constants.NAME +","
+                + Constants.SUGAR_ID +","
+                + Constants.CREATED_AT+","
+                + Constants.UPDATED_AT+","
+                + Constants.DO_NOT_DISTURB+","
+                + Constants.NOTIFY_ON_VISITS+","
+                + Constants.PHONE_MOBILE+","
+                + Constants.ROOM+","
+                + Constants.FIRST_NAME+","
+                + Constants.LAST_NAME+","
+                + Constants.RESIDENT_TYPE_ID+","
+                + Constants.EXTERNAL_RECORD_ID+","
+                + Constants.GENDER+","
+                + Constants.NOTE+","
+                + Constants.STATUS_C+","
+                + Constants.FULL_NAME+ ") VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+
+        //SQLiteDatabase db = this.getWritableDatabase();
+        mDb = mDbHelper.getWritableDatabase();
+
+        /*
+         * According to the docs http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html
+         * Writers should use beginTransactionNonExclusive() or beginTransactionWithListenerNonExclusive(SQLiteTransactionListener)
+         * to start a transaction. Non-exclusive mode allows database file to be in readable by other threads executing queries.
+         */
+        mDb.beginTransactionNonExclusive();
+        // db.beginTransaction();
+
+        SQLiteStatement stmt = mDb.compileStatement(sql);
+
+        for(int i=0;i<mArrayList.size();i++){
+            PojoResidents item = mArrayList.get(i);
+
+            /*if(i == (numberOfRows-1)){
+                lastItem = item;
+            }*/
+            stmt.bindString(1, item.getCommunity_id());
+            stmt.bindString(2, item.getId());
+            stmt.bindString(3, item.getName());
+            stmt.bindString(4, item.getSugar_id());
+            stmt.bindString(5, item.getCreated_at());
+            stmt.bindString(6, item.getUpdated_at());
+            stmt.bindString(7, item.getDo_not_disturb());
+            stmt.bindString(8, item.getNotify_on_visits());
+            stmt.bindString(9, item.getPhone_mobile());
+            stmt.bindString(10, item.getRoom());
+            stmt.bindString(11, item.getFirst_name());
+            stmt.bindString(12, item.getLast_name());
+            stmt.bindString(13, item.getResident_type_id());
+            stmt.bindString(14, item.getExternal_record_id());
+            stmt.bindString(15, item.getGender());
+            stmt.bindString(16, item.getNote());
+            stmt.bindString(17, item.getStatus_c());
+            stmt.bindString(18, item.getFull_name());
+            stmt.execute();
+
+
+
+
+        }
+
+        mDb.setTransactionSuccessful();
+        mDb.endTransaction();
+       // mDb.close();
+    }
+
+
     public Cursor fetch( ) throws SQLException {
-        System.out.println("DBIns");System.out.println("DBIns");
+        //mDbHelper.open();
         String query = "Select * from "
                 + Constants.RESIDENT_TABLE + ";";
-        Cursor mCursorFetch = Constants.mDb.rawQuery( query, null );
+        Cursor mCursorFetch = mDb.rawQuery( query, null );
         if ( mCursorFetch != null ) {
             mCursorFetch.moveToFirst();
         }
         return mCursorFetch;
+    }
+
+
+    public Cursor deleteAll() throws SQLException {
+        Cursor mCursorDeleteAll = mDb.rawQuery( "Delete FROM "
+                + Constants.RESIDENT_TABLE, null );
+        if ( mCursorDeleteAll != null ) {
+            mCursorDeleteAll.moveToFirst();
+        }
+        return mCursorDeleteAll;
     }
     
 }

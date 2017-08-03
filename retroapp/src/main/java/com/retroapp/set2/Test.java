@@ -3,6 +3,7 @@ package com.retroapp.set2;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -20,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -195,50 +197,66 @@ public class Test extends AppCompatActivity {
                 String status_c = "";
                 String full_name = "";
 
-                JSONObject tempPostObject = residentArr.getJSONObject(i);
+                /*JSONObject tempPostObject = residentArr.getJSONObject(i);
+
                 comm_id = validateJSON(tempPostObject, Constants.COMMUNITY_ID);
                 id = validateJSON(tempPostObject, Constants.ID);
                 sugar_id = validateJSON(tempPostObject, Constants.SUGAR_ID);
                 name = validateJSON(tempPostObject, Constants.NAME);
                 phone_mobile = validateJSON(tempPostObject, Constants.PHONE_MOBILE);
                 full_name = validateJSON(tempPostObject, Constants.FULL_NAME);
-                //PojoResidents mPojo = new PojoResidents();
-                //mPojo.setCommunity_id(validateJSON(tempPostObject, Constants.COMMUNITY_ID));
-//                mPojo.setId((id.isEmpty() ? tempPostObject.getString(Constants.ID) : "null"));
-//                mPojo.setName((name.isEmpty() ? tempPostObject.getString(Constants.NAME) : "null"));
-//                mPojo.setSugar_id((sugar_id.isEmpty() ? tempPostObject.getString(Constants.SUGAR_ID) : "null"));
-//                mPojo.setCreated_at((created_at.isEmpty() ? tempPostObject.getString(Constants.CREATED_AT) : "null"));
-//                mPojo.setUpdated_at((updated_at.isEmpty() ? tempPostObject.getString(Constants.UPDATED_AT) : "null"));
-//                mPojo.setDo_not_disturb((do_not_disturb.isEmpty() ? tempPostObject.getString(Constants.DO_NOT_DISTURB) : "null"));
-//                mPojo.setNotify_on_visits((notify_on_visits.isEmpty() ? tempPostObject.getString(Constants.NOTIFY_ON_VISITS) : "null"));
-//                mPojo.setPhone_mobile((phone_mobile.isEmpty() ? tempPostObject.getString(Constants.PHONE_MOBILE) : "null"));
-//                mPojo.setRoom((room.isEmpty() ? tempPostObject.getString(Constants.ROOM) : "null"));
-//                mPojo.setFirst_name((first_name.isEmpty() ? tempPostObject.getString(Constants.FIRST_NAME) : "null"));
-//                mPojo.setLast_name((last_name.isEmpty() ? tempPostObject.getString(Constants.LAST_NAME) : "null"));
-//                mPojo.setResident_type_id((resident_type_id.isEmpty() ? tempPostObject.getString(Constants.RESIDENT_TYPE_ID) : "null"));
-//                mPojo.setExternal_record_id((external_record_id.isEmpty() ? tempPostObject.getString(Constants.EXTERNAL_RECORD_ID) : "null"));
-//                mPojo.setGender((gender.isEmpty() ? tempPostObject.getString(Constants.GENDER) : "null"));
-//                mPojo.setNote((note.isEmpty() ? tempPostObject.getString(Constants.NOTE) : "null"));
-//                mPojo.setStatus_c((status_c.isEmpty() ? tempPostObject.getString(Constants.STATUS_C) : "null"));
-//                mPojo.setFull_name((full_name.isEmpty() ? tempPostObject.getString(Constants.FULL_NAME) : "null"));
 
-                // residentsArray.add(mPojo);
+
                 mTrnResidents.insert_Resident(comm_id, id, name, sugar_id, created_at, updated_at, do_not_disturb, notify_on_visits, phone_mobile, room, first_name, last_name, resident_type_id, external_record_id, gender, note, status_c, full_name);
 
+                */
+
+                //method for bulk  and fast insertion
+                JSONObject tempPostObject = residentArr.getJSONObject(i);
+                PojoResidents mPojo = new PojoResidents();
+                mPojo.setCommunity_id(validateJSON(tempPostObject, Constants.COMMUNITY_ID));
+                mPojo.setId(validateJSON(tempPostObject,Constants.ID));
+                mPojo.setName(validateJSON(tempPostObject,Constants.NAME));
+                mPojo.setSugar_id(validateJSON(tempPostObject,Constants.SUGAR_ID));
+                mPojo.setCreated_at(validateJSON(tempPostObject,Constants.CREATED_AT) );
+                mPojo.setUpdated_at(validateJSON(tempPostObject,Constants.UPDATED_AT));
+                mPojo.setDo_not_disturb(validateJSON(tempPostObject,Constants.DO_NOT_DISTURB));
+                mPojo.setNotify_on_visits(validateJSON(tempPostObject,Constants.NOTIFY_ON_VISITS) );
+                mPojo.setPhone_mobile(validateJSON(tempPostObject,Constants.PHONE_MOBILE));
+                mPojo.setRoom(validateJSON(tempPostObject,Constants.ROOM));
+                mPojo.setFirst_name(validateJSON(tempPostObject,Constants.FIRST_NAME));
+                mPojo.setLast_name(validateJSON(tempPostObject,Constants.LAST_NAME));
+                mPojo.setResident_type_id(validateJSON(tempPostObject,Constants.RESIDENT_TYPE_ID));
+                mPojo.setExternal_record_id(validateJSON(tempPostObject,Constants.EXTERNAL_RECORD_ID));
+                mPojo.setGender(validateJSON(tempPostObject,Constants.GENDER));
+                mPojo.setNote(validateJSON(tempPostObject,Constants.NOTE));
+                mPojo.setStatus_c(validateJSON(tempPostObject,Constants.STATUS_C));
+                mPojo.setFull_name(validateJSON(tempPostObject,Constants.FULL_NAME));
+
+                 residentsArray.add(mPojo);
+
+
+
             }
-            Trn_Residents.close();
+           // Trn_Residents.close();
 
-            displayListView();
-        /*if (residentsArray.size() > 0) {
-
+            //displayListView();
+        if (residentsArray.size() > 0) {
             //show the Database value
             try {
-                displayListView();
-            } catch (FileNotFoundException e) {
+                Trn_Residents mTrn = new Trn_Residents(Test.this);
+                mTrn.deleteAll();
+                mTrn.open();
+                mTrn.insertResidentFast(residentsArray);
+                Cursor crResident = mTrn.fetch();
+                if(crResident.getCount() >0){
+                    Toast.makeText(getApplicationContext(), "Record Inserted:"+crResident.getCount(), Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
-            Toast.makeText(getApplicationContext(), "Data Downloaded", Toast.LENGTH_SHORT).show();
+        }
+            //Toast.makeText(getApplicationContext(), "Data Downloaded", Toast.LENGTH_SHORT).show();
         } else {
             System.out.println("STATUS fails");
         }
@@ -253,6 +271,65 @@ public class Test extends AppCompatActivity {
 
         return result;
     }
+
+    // we used AsyncTask so it won't block the UI thread during inserts.
+    class AsyncInsertData extends AsyncTask<String, String, String> {
+
+        DataBase databaseHandler;
+        String type,mCount;
+        long timeElapsed;
+
+        protected AsyncInsertData(String type,String mCount){
+            this.type  = type;
+            this.mCount = mCount;
+            this.databaseHandler = new DataBase(Test.this);
+        }
+
+        // @type - can be 'normal' or 'fast'
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //tvStatus.setText("Inserting " + mCount + " records...");
+        }
+
+        @Override
+        protected String doInBackground(String... aurl) {
+
+            try {
+
+                // get number of records to be inserted
+                //int insertCount = Integer.parseInt(mCount);
+
+                // empty the table
+                //databaseHandler.deleteRecords();
+
+                // keep track of execution time
+                long lStartTime = System.nanoTime();
+
+                if (type.equals("normal")) {
+                    //databaseHandler.insertNormal(insertCount);
+                } else {
+                    //databaseHandler.insertFast(insertCount);
+                }
+
+                // execution finised
+                long lEndTime = System.nanoTime();
+
+                // display execution time
+                timeElapsed = lEndTime - lStartTime;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(String unused) {
+           /* tvStatus.setText("Done inserting " + databaseHandler.countRecords() + " records. Time elapsed: " + timeElapsed / 1000000 + " ms.");*/
+        }
+
+    }
+
 
     private void displayListView() {
         System.out.println("DisplayListView");

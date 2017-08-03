@@ -9,7 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBase {
-
+    public static DataBaseHelper mDbHelper;
+    public static SQLiteDatabase mDb;
     protected final Context mCtx;
 
 
@@ -21,15 +22,15 @@ public class DataBase {
 
 
     public DataBase open() throws SQLException {
-        Constants.mDbHelper = new DataBaseHelper(mCtx);
-        Constants.mDb = Constants.mDbHelper.getWritableDatabase();
+        mDbHelper = new DataBaseHelper(mCtx);
+        mDb = mDbHelper.getWritableDatabase();
         return this;
     }
 
     public static void close() {
-        if (Constants.mDb != null) {
+        if (mDb != null) {
             // mDbHelper.close();
-            Constants.mDb.close();
+            mDb.close();
         }
     }
 

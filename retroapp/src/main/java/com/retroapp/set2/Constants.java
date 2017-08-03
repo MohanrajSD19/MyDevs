@@ -8,8 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class Constants {
 
     static final String RESPONSE_SUCCESS="200";
-    public static DataBase.DataBaseHelper mDbHelper;
-    public static SQLiteDatabase mDb;
+
 
     static final String DATABASE_NAME = "retro.db";
     static final int DATABASE_VERSION = 1;

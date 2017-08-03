@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/retroapp" />
             <option value="$PROJECT_DIR$/segmentseekbar" />
             <option value="$PROJECT_DIR$/signalstatus" />
+            <option value="$PROJECT_DIR$/sqlitetransaction" />
             <option value="$PROJECT_DIR$/togglepassword" />
           </set>
         </option>

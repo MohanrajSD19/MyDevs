@@ -6,6 +6,7 @@ package com.retroapp.set2;
 public class Query {
 
     protected static final String CREATEQUERY = "CREATE TABLE IF NOT EXISTS ";
+
     protected static final String DROPQUERY = "DROP TABLE IF EXISTS";
     protected static final String UPDATEQUERY = "UPDATE";
 
