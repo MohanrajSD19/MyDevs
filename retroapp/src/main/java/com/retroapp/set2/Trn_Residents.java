@@ -148,6 +148,7 @@ public class Trn_Residents extends DataBase {
         if ( mCursorFetch != null ) {
             mCursorFetch.moveToFirst();
         }
+        System.out.println("Record Inserted");
         return mCursorFetch;
     }
 
@@ -158,6 +159,7 @@ public class Trn_Residents extends DataBase {
         if ( mCursorDeleteAll != null ) {
             mCursorDeleteAll.moveToFirst();
         }
+        System.out.println("Record Deleted");
         return mCursorDeleteAll;
     }
     

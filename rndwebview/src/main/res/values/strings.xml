@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RndWebView</string>
+    <string name="btn_copy">Copy</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_prev">Prev</string>
+    <string name="btn_use">Use URL</string>
+</resources>

@@ -243,7 +243,9 @@ public class Test extends AppCompatActivity {
             //displayListView();
         if (residentsArray.size() > 0) {
             //show the Database value
-            try {
+
+            new AsyncInsertData("fast",residentsArray).execute();
+            /*try {
                 Trn_Residents mTrn = new Trn_Residents(Test.this);
                 mTrn.deleteAll();
                 mTrn.open();
@@ -254,7 +256,7 @@ public class Test extends AppCompatActivity {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
         }
             //Toast.makeText(getApplicationContext(), "Data Downloaded", Toast.LENGTH_SHORT).show();
         } else {
@@ -278,11 +280,13 @@ public class Test extends AppCompatActivity {
         DataBase databaseHandler;
         String type,mCount;
         long timeElapsed;
+        ArrayList<PojoResidents> mArrayList;
 
-        protected AsyncInsertData(String type,String mCount){
+        protected AsyncInsertData(String type,ArrayList<PojoResidents> mArrayList){
             this.type  = type;
-            this.mCount = mCount;
+            //this.mCount = mCount;
             this.databaseHandler = new DataBase(Test.this);
+            this.mArrayList =mArrayList;
         }
 
         // @type - can be 'normal' or 'fast'
@@ -308,8 +312,19 @@ public class Test extends AppCompatActivity {
 
                 if (type.equals("normal")) {
                     //databaseHandler.insertNormal(insertCount);
+
                 } else {
                     //databaseHandler.insertFast(insertCount);
+                    try {
+                        Trn_Residents mTrn = new Trn_Residents(Test.this);
+                        mTrn.open();
+                        //mTrn.deleteAll();
+                        mTrn.insertResidentFast(residentsArray);
+                        //Cursor crResident = mTrn.fetch();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 // execution finised
@@ -357,50 +372,3 @@ public class Test extends AppCompatActivity {
 }
 
 
-
-
-
-
-/*
-try{
-        db.beginTransaction();
-        for each record in the list {
-        do_some_processing();
-        if (line represent a valid  entry) {
-        db.insert(SOME_TABLE, null, SOME_VALUE);
-        }
-        some_other_processing();
-        }
-        db.setTransactionSuccessful();
-        } catch (SQLException e) {
-        } finally {
-        db.endTranscation();
-        }*/
-/*
-* do {
-* int residentStoredDataPos = 0;
-                //To set the Post Array values to List View
-                PojoResidents residentPOJO = residentsArray.get(residentStoredDataPos);
-                String comm_id = residentPOJO.getCommunity_id();
-                String id = residentPOJO.getId();
-                String name = residentPOJO.getName();
-                String sugar_id = residentPOJO.getSugar_id();
-                String created_at = residentPOJO.getCreated_at();
-                String updated_at = residentPOJO.getUpdated_at();
-                String do_not_disturb = residentPOJO.getDo_not_disturb();
-                String notify_on_visits = residentPOJO.getNotify_on_visits();
-                String phone_mobile = residentPOJO.getPhone_mobile();
-                String room = residentPOJO.getRoom();
-                String first_name = residentPOJO.getFirst_name();
-                String last_name = residentPOJO.getLast_name();
-                String resident_type_id = residentPOJO.getResident_type_id();
-                String external_record_id = residentPOJO.getExternal_record_id();
-                String gender = residentPOJO.getGender();
-                String note = residentPOJO.getNote();
-                String status_c = residentPOJO.getStatus_c();
-                String full_name = residentPOJO.getFull_name();
-
-                //System.out.println("------Resident:" + residentStoredDataPos + "\tcomm_id:" + comm_id + " \t name:" + name);
-
-                residentStoredDataPos++;*/
-// Increase the position of array-list    } while (residentStoredDataPos < residentsArray.size());
