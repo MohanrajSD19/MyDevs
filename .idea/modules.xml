@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/dyanmicip/dyanmicip.iml" filepath="$PROJECT_DIR$/dyanmicip/dyanmicip.iml" />
       <module fileurl="file://$PROJECT_DIR$/dynarecycleview/dynarecycleview.iml" filepath="$PROJECT_DIR$/dynarecycleview/dynarecycleview.iml" />
       <module fileurl="file://$PROJECT_DIR$/facedetection_test1/facedetection_test1.iml" filepath="$PROJECT_DIR$/facedetection_test1/facedetection_test1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/percentagelayout/percentagelayout.iml" filepath="$PROJECT_DIR$/percentagelayout/percentagelayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/readsqlite/readsqlite.iml" filepath="$PROJECT_DIR$/readsqlite/readsqlite.iml" />
       <module fileurl="file://$PROJECT_DIR$/retroapp/retroapp.iml" filepath="$PROJECT_DIR$/retroapp/retroapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/rndwebview/rndwebview.iml" filepath="$PROJECT_DIR$/rndwebview/rndwebview.iml" />

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/id_root_relative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:clipToPadding="false"
+    android:focusableInTouchMode="true">
+
+
+    <LinearLayout
+        android:id="@+id/row_one"
+        app:layout_widthPercent="100%"
+        app:layout_heightPercent="10%"
+        android:orientation="vertical"
+        android:background="#123123">
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_container_1"
+        app:layout_heightPercent="20%"
+        app:layout_widthPercent="100%"
+        android:layout_below="@+id/row_one"
+        android:layout_margin="10dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="vertical"
+        app:cardBackgroundColor="#3e6624"
+        android:elevation="20dp">
+        </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_container_2"
+        app:layout_heightPercent="40%"
+        app:layout_widthPercent="100%"
+        android:layout_below="@+id/card_container_1"
+        android:layout_margin="10dp"
+
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="vertical"
+        app:cardBackgroundColor="#255e25"
+        app:cardElevation="20dp"
+        app:cardPreventCornerOverlap="true">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+            <include layout="@layout/inc2"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_container_3"
+        app:layout_heightPercent="40%"
+        app:layout_widthPercent="100%"
+        android:layout_below="@+id/card_container_2"
+        android:layout_margin="10dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="vertical"
+        app:cardBackgroundColor="#023302"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="30dp"
+        app:cardPreventCornerOverlap="true">
+    </android.support.v7.widget.CardView>
+
+
+</android.support.percent.PercentRelativeLayout>

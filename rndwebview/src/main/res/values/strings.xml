@@ -3,5 +3,8 @@
     <string name="btn_copy">Copy</string>
     <string name="btn_next">Next</string>
     <string name="btn_prev">Prev</string>
+    <string name="str_Goback">\u003c</string>
+    <string name="str_Gofwd">\u003e</string>
+
     <string name="btn_use">Use URL</string>
 </resources>

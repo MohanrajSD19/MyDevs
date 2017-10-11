@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <android.support.percent.PercentRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/id_child_relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:clipToPadding="false"
+        android:focusableInTouchMode="true">
+    <TextView
+        android:id="@+id/txt1"
+        app:layout_heightPercent="20%"
+        app:layout_widthPercent="100%"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_below="@+id/txt1"
+        app:layout_heightPercent="20%"
+        app:layout_widthPercent="100%"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/txt3"
+        android:layout_below="@+id/txt2"
+        app:layout_heightPercent="20%"
+        app:layout_widthPercent="100%"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/txt4"
+        android:layout_below="@+id/txt3"
+        app:layout_heightPercent="20%"
+        app:layout_widthPercent="100%"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/txt5"
+        android:layout_below="@+id/txt4"
+        app:layout_heightPercent="20%"
+        app:layout_widthPercent="100%"
+        android:text="TextView" />
+
+
+    </android.support.percent.PercentRelativeLayout>
+

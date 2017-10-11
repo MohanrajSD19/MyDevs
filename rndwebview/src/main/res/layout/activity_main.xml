@@ -6,26 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/btns_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#80000000">
+        <Button
+            android:id="@+id/button_back"
+            android:text="@string/str_Goback"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="50dp"/>
+        <Button
+            android:id="@+id/button_forward"
+            android:text="@string/str_Gofwd"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/button_back"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="50dp"/>
+        <Button
+            android:id="@+id/button_next"
+            android:text="@string/btn_next"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"/>
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/button_back"
-        android:text="@string/btn_prev"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"/>
-    <Button
-        android:id="@+id/button_next"
-        android:text="@string/btn_next"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_width="wrap_content"/>
-<com.rndwebview.TouchyWebView
-    android:id="@+id/myWebVw"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_above="@+id/button_back"
-    />
+    <com.rndwebview.TouchyWebView
+        android:id="@+id/myWebVw"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/btns_container"/>
 
 </RelativeLayout>
