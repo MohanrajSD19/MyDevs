@@ -1,2 +1,2 @@
 # MyDevs
-This is the project which is used for experimental purpose in android
+This Project is going used for experimental purpose in android application development. 
